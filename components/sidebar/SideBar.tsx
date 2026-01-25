@@ -1,7 +1,83 @@
+import Link from "next/link";
 import styles from "./SideBar.module.scss";
+import { sideBarContent } from "@/constants";
+import Image from "next/image";
 
 const SideBar = () => {
-  return <div>SideBar</div>;
+  return (
+    <aside className={styles.sidebar}>
+      <div className={styles.logo}>
+        <img src="/icons/briefcase.png" alt="briefcase" />
+        <h2>Switch Organization</h2>
+        <img src="/icons/arrow-down1.png" alt="arrow-down" />
+      </div>
+
+      <div className={styles.dashboard}>
+        <img src="/icons/home.png" alt="home" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <section className={styles.sideLinks}>
+        <div>
+          <h2>Customers</h2>
+
+          <ul>
+            {sideBarContent.customers.map((item) => (
+              <Link href={item.href} key={item.text} className={styles.link}>
+                {/* <img src={item.icon} alt={item.text} /> */}
+                <Image
+                  src={item.icon}
+                  width={12}
+                  height={12}
+                  alt={item.text}
+                  className={styles.image}
+                />
+                <p>{item.text}</p>
+              </Link>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Businesses</h2>
+
+          <ul>
+            {sideBarContent.businesses.map((item) => (
+              <Link href={item.href} key={item.text} className={styles.link}>
+                {/* <img src={item.icon} alt={item.text} /> */}
+                <Image
+                  src={item.icon}
+                  width={12}
+                  height={12}
+                  alt={item.text}
+                  className={styles.image}
+                />
+                <p>{item.text}</p>
+              </Link>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Settings</h2>
+
+          <ul>
+            {sideBarContent.settings.map((item) => (
+              <Link href={item.href} key={item.text} className={styles.link}>
+                {/* <img src={item.icon} alt={item.text} /> */}
+                <Image
+                  src={item.icon}
+                  width={12}
+                  height={12}
+                  alt={item.text}
+                  className={styles.image}
+                />
+                <p>{item.text}</p>
+              </Link>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </aside>
+  );
 };
 
 export default SideBar;

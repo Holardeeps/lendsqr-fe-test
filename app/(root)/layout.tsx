@@ -1,4 +1,6 @@
+import styles from "./layout.module.scss";
 import Navbar from "@/components/nav/Navbar";
+import SideBar from "@/components/sidebar/SideBar";
 
 export default function AppLayout({
   children,
@@ -9,7 +11,11 @@ export default function AppLayout({
     <div>
       {/* Navbar component shared between this route group */}
       <Navbar />
-      {children}
+      <main className={styles.home}>
+        {/* Sidebar for the dashboard */}
+        <SideBar />
+        {children}
+      </main>
     </div>
   );
 }

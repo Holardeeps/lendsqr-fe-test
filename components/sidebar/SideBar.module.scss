@@ -1,0 +1,75 @@
+@use "@/styles/variables" as v;
+@use "@/styles/mixins" as m;
+
+.sidebar {
+  width: 283px;
+  min-height: 100vh;
+  //   height: auto;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  padding-left: 30px;
+  padding-top: 30px;
+  font-family: var(--work-sans);
+  color: v.$primary;
+
+  .logo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .dashboard {
+    display: flex;
+    align-items: center;
+    gap: 10;
+    margin-bottom: 2rem;
+    opacity: 60%;
+
+    img {
+      width: 16px;
+      height: 14px;
+    }
+
+    h2 {
+      @include m.sidebarTitle;
+      font-size: 16px;
+    }
+  }
+
+  .sideLinks {
+    h2 {
+      @include m.sidebarTitle;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    div {
+      margin-bottom: 10px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      gap: 20px;
+      opacity: 60%;
+      margin-bottom: 5px;
+
+      .image {
+        width: 16px;
+        height: 14px;
+      }
+
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: capitalize;
+      }
+    }
+  }
+}

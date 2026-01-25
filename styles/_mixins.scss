@@ -1,3 +1,5 @@
+@use "./variables" as v;
+
 @mixin center {
   display: flex;
   align-items: center;
@@ -9,4 +11,10 @@
   align-items: center;
   justify-content: space-between;
   justify-items: center;
+}
+
+@mixin sidebarTitle {
+  color: v.$primary-1;
+  font-weight: 500;
+  font-size: 12px;
 }
