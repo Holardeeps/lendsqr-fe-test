@@ -1,0 +1,39 @@
+@use "@/styles/mixins" as m;
+@use "@/styles/variables" as v;
+
+.input {
+  @include m.between;
+  width: 400px;
+  height: 40px;
+  border: 1px solid v.$primary;
+  border-radius: 8px;
+  opacity: 20;
+  overflow: hidden;
+
+  input {
+    color: #545f7d;
+    width: 100%;
+    font-family: var(--work-sans);
+    height: 100%;
+    padding-left: 10px;
+    font-size: 1.1rem;
+  }
+  span {
+    @include m.center;
+    background-color: v.$secondary;
+    width: 56px;
+    height: 40px;
+    cursor: pointer;
+    transition-property: all;
+
+    img {
+      width: 13.97px;
+      height: 14px;
+    }
+
+    &:hover {
+      background-color: rgba(57, 205, 204, 0.8);
+      transition: 0.6s ease-in-out;
+    }
+  }
+}

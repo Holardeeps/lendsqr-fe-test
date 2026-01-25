@@ -1,0 +1,72 @@
+@use "@/styles/mixins" as m;
+@use "@/styles/variables" as v;
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  font-family: var(--montserrat);
+  z-index: 100;
+  box-shadow: 0 0 0 3px rgb(0, 0, 0, 0.04);
+
+  .nav {
+    width: 98%;
+    height: 100%;
+    padding: 5px;
+    margin: auto;
+    @include m.between;
+
+    .logo {
+      @include m.center;
+      width: 144.8px;
+      height: 30px;
+    }
+
+    .rightBox {
+      @include m.between;
+      width: 340px;
+      max-width: 380px;
+      color: v.$primary;
+      margin-left: 8rem;
+      margin-right: 2.2rem;
+      cursor: pointer;
+
+      .link {
+        text-decoration: underline;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      img {
+        width: 26px;
+        height: 26px;
+      }
+
+      .icon {
+        height: 29px;
+      }
+
+      .userBox {
+        @include m.center;
+
+        .avatar {
+          border-radius: 50px;
+          margin: 3px;
+          margin-right: 7px;
+          width: 48px;
+          height: 48px;
+          object-fit: cover;
+        }
+
+        h2 {
+          font-size: 1.3rem;
+          font-weight: 600;
+          font-family: var(--work-sans);
+        }
+      }
+    }
+  }
+}
