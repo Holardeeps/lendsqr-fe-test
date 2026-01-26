@@ -1,4 +1,5 @@
 @use "@/styles/variables" as v;
+@use "@/styles/mixins" as m;
 
 .container {
   width: 1040px;
@@ -22,16 +23,16 @@
 
   .userTable {
     width: 100%;
+    height: 640px;
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
     // overflow-x: auto;
-    padding: 0 1.8rem;
+    padding: 1rem 1.8rem;
 
     table {
       width: 100%;
       border-collapse: collapse;
-      //   table-layout: fixed;
       border-spacing: 2.19rem 0;
 
       th,
@@ -41,6 +42,7 @@
       }
       th {
         vertical-align: bottom;
+        position: relative;
 
         .title {
           display: flex;
@@ -61,6 +63,7 @@
       tbody {
         tr {
           border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+          height: 57px;
         }
         tr:last-child {
           border-bottom: none;
@@ -71,8 +74,13 @@
           font-size: 14px;
           color: v.$primary-1;
 
-          img {
-            cursor: pointer;
+          .infoBox {
+            @include m.center;
+            position: relative;
+
+            img {
+              cursor: pointer;
+            }
           }
         }
       }

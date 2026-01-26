@@ -135,7 +135,7 @@ export const usersMock: userListData[] = [
   {
     organization: "irorun",
     userName: "Adedeji",
-    email: "adedeji@lendsqr.com",
+    email: "adedej2wi@lendsqr.com",
     phoneNumber: "080789987645",
     dateJoined: "may 15, 2020 10:00 AM",
     status: "active",
@@ -143,7 +143,7 @@ export const usersMock: userListData[] = [
   {
     organization: "lendstar",
     userName: "Adedeji",
-    email: "adedeji@lendsqr.com",
+    email: "adedeji22@lendsqr.com",
     phoneNumber: "080789987645",
     dateJoined: "may 15, 2020 10:00 AM",
     status: "inactive",
@@ -151,7 +151,7 @@ export const usersMock: userListData[] = [
   {
     organization: "lendsqr",
     userName: "Adedeji",
-    email: "adedeji@lendsqr.com",
+    email: "adedeji1@lendsqr.com",
     phoneNumber: "080789987645",
     dateJoined: "may 15, 2020 10:00 AM",
     status: "active",

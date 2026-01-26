@@ -1,0 +1,97 @@
+@use "@/styles/variables" as v;
+@use "@/styles/mixins" as m;
+
+.filterForm {
+  position: absolute;
+  top: 40;
+  left: 0;
+  z-index: 20;
+  width: 270px;
+  height: 600px;
+  color: v.$primary-1;
+  background-color: #ffffff;
+  border: 1px solid v.$primary-1;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
+
+  label {
+    font-weight: 500;
+    font-size: 14;
+
+    input {
+      padding: 20px;
+
+      &::placeholder {
+        opacity: 70;
+        font-weight: 400;
+      }
+    }
+
+    select {
+      padding: 0 12px;
+      color: v.$primary-1;
+
+      option {
+        color: v.$primary-1;
+        // background-color: ;
+      }
+    }
+
+    select,
+    input {
+      width: 230px;
+      height: 40px;
+      font-size: 14px;
+      border: 1px solid v.$primary-1;
+      border-radius: 8px;
+      opacity: 20;
+      background-color: #ffffff;
+      margin-top: 6px;
+      margin-bottom: 15px;
+    }
+
+    .date {
+      @include m.between;
+      width: 230px;
+      height: 40px;
+      border: 1px solid v.$primary-1;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 6px;
+      margin-bottom: 20px;
+
+      input {
+        border: none;
+        width: 190px;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .actions {
+    @include m.center;
+    justify-content: start;
+    gap: 20px;
+    margin-top: 10px;
+
+    button {
+      width: 96px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid v.$primary-1;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .reset {
+    }
+    .filter {
+      background-color: #39cdcc;
+      color: #ffffff;
+      border: 1px solid #39cdcc;
+    }
+  }
+}

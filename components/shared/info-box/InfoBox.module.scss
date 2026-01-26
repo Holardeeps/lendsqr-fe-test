@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as m;
+@use "@/styles/variables" as v;
+
+.box {
+  position: absolute;
+  top: 25;
+  right: -45;
+  width: 180px;
+  height: 130px;
+  z-index: 20;
+  background-color: #fff;
+  color: v.$primary-1;
+  border: 1px solid #545f7d0a;
+  box-shadow: 3px 5px 20px 0 #0000000a;
+
+  div {
+    @include m.center;
+    justify-content: start;
+
+    gap: 8px;
+    width: 109px;
+    height: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+}

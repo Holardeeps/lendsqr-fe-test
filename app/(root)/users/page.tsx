@@ -1,10 +1,26 @@
+"use client";
+
+import { useState } from "react";
+
 import StatsCard from "@/components/stat-card/StatsCard";
 import styles from "./page.module.scss";
 import { tableHeader, userAnalytics, usersMock } from "@/constants";
 import { capitalizeWord, formatDateString } from "@/lib/utils";
 import Badge from "@/components/shared/badge/Badge";
+import DropDownFilter from "@/components/filter/DropDownFilter";
+import InfoBox from "@/components/shared/info-box/InfoBox";
 
 const page = () => {
+  const [filter, setFilter] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+
+  const dropForm = (column: string) => {
+    setFilter((prev) => (prev === column ? null : column));
+  };
+  const openInfo = (column: string) => {
+    setInfo((prev) => (prev === column ? null : column));
+  };
+
   return (
     <main className={styles.container}>
       <h1 className={styles.header}>Users</h1>
@@ -45,9 +61,20 @@ const page = () => {
                     {header === "" ? (
                       ""
                     ) : (
-                      <img src="/icons/filter.png" alt="filter" />
+                      <img
+                        src="/icons/filter.png"
+                        alt="filter"
+                        onClick={(e) => {
+                          dropForm(header);
+                        }}
+                      />
                     )}
                   </div>
+                  {filter === header && (
+                    <div>
+                      <DropDownFilter />
+                    </div>
+                  )}
                 </th>
               ))}
             </tr>
@@ -68,7 +95,18 @@ const page = () => {
                   <Badge status={user.status} />
                 </td>
                 <td>
-                  <img src="/icons/info-icon.png" alt="info" />
+                  <div className={styles.infoBox}>
+                    <img
+                      src="/icons/info-icon.png"
+                      alt="info"
+                      className=""
+                      // onClick={() => setInfo(prev => (prev === i ? null : i))}
+                      onClick={() => openInfo(user.email)}
+                    />
+                    {info === user.email && (
+                      <InfoBox userName={user.userName} />
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
