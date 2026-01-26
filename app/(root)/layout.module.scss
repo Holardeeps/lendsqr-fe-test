@@ -1,7 +1,6 @@
-@use "@/styles/mixins" as m;
+@use "@/styles/variables" as v;
 
 .home {
-  //   @include m.center;
   display: flex;
-  //   height: 100vh;
+  background-color: v.$paleGray;
 }

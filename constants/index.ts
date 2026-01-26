@@ -19,10 +19,11 @@ import {
   users,
   userX,
 } from "@/public/icons";
+import { friends2 } from "@/public/images";
 
 export const sideBarContent = {
   customers: [
-    { text: "users", icon: friends, href: "#" },
+    { text: "users", icon: friends, href: "/users" },
     { text: "guarantors", icon: users, href: "#" },
     { text: "loans", icon: sack, href: "#" },
     { text: "decison models", icon: handShake, href: "#" },
@@ -48,3 +49,111 @@ export const sideBarContent = {
     { text: "audit logs", icon: clipboard, href: "#" },
   ],
 };
+
+export const tableHeader: string[] = [
+  "organization",
+  "username",
+  "email",
+  "phone number",
+  "date joined",
+  "status",
+  "",
+];
+
+export const userAnalytics: userAnalyticsType[] = [
+  { title: "users", icon: "/images/friends2-group.png", value: "2,453" },
+  { title: "active users", icon: "/images/b-users-group.png", value: "2,453" },
+  {
+    title: "users with loans",
+    icon: "/images/ledger-group.png",
+    value: "12,453",
+  },
+  {
+    title: "users with savings",
+    icon: "/images/stacked-coins-group.png",
+    value: "102,453",
+  },
+];
+
+export const usersMock: userListData[] = [
+  {
+    organization: "lendsqr",
+    userName: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "080789987645",
+    dateJoined: "may 15, 2020 10:00 AM",
+    status: "inactive",
+  },
+  {
+    organization: "irorun",
+    userName: "salako",
+    email: "salako@irorun.com",
+    phoneNumber: "09027287645",
+    dateJoined: "june 22, 2025 12:22 PM",
+    status: "blacklisted",
+  },
+  {
+    organization: "lendstar",
+    userName: "matthew cussons",
+    email: "matthew@lendstar.com",
+    phoneNumber: "0071273627383",
+    dateJoined: "sept 07, 2007 18:37 PM",
+    status: "pending",
+  },
+  {
+    organization: "lendsqr",
+    userName: "badmus denrele",
+    email: "badmus@lendsqr.com",
+    phoneNumber: "7928191910",
+    dateJoined: "july 27, 2011 09:44 AM",
+    status: "active",
+  },
+  {
+    organization: "lendsqr",
+    userName: "simmons",
+    email: "simmons@lendsqr.com",
+    phoneNumber: "82928292922",
+    dateJoined: "oct 23, 2015 14:00 PM",
+    status: "inactive",
+  },
+  {
+    organization: "lendstar",
+    userName: "carl jenson",
+    email: "carl@lendstar.com",
+    phoneNumber: "384937392822",
+    dateJoined: "dec 31, 2017 15:17 PM",
+    status: "pending",
+  },
+  {
+    organization: "irorun",
+    userName: "denver utah",
+    email: "denver@irorun.com",
+    phoneNumber: "080789987645",
+    dateJoined: "may 15, 2020 10:00 AM",
+    status: "blacklisted",
+  },
+  {
+    organization: "irorun",
+    userName: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "080789987645",
+    dateJoined: "may 15, 2020 10:00 AM",
+    status: "active",
+  },
+  {
+    organization: "lendstar",
+    userName: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "080789987645",
+    dateJoined: "may 15, 2020 10:00 AM",
+    status: "inactive",
+  },
+  {
+    organization: "lendsqr",
+    userName: "Adedeji",
+    email: "adedeji@lendsqr.com",
+    phoneNumber: "080789987645",
+    dateJoined: "may 15, 2020 10:00 AM",
+    status: "active",
+  },
+];

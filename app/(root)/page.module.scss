@@ -1,4 +1,9 @@
+@use "@/styles/mixins" as m;
+@use "@/styles/variables" as v;
+
 .home {
-  //   background-color: red;
-  //   color: blue;
+  @include m.center;
+  color: v.$primary;
+  width: 100%;
+  font-size: 2rem;
 }

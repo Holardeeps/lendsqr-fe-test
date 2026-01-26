@@ -1,0 +1,24 @@
+$statuses: (
+  active: #39cd62,
+  inactive: #545f7d,
+  blacklisted: #e4033b,
+  pending: #e9b200,
+);
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.88rem;
+  border-radius: 9999px;
+  font-weight: 400;
+  font-size: 14px;
+  //   transition: background-color 0.5s ease;
+}
+
+@each $status, $color in $statuses {
+  .#{$status} {
+    color: $color;
+    background-color: rgba($color, 0.1);
+    // border: 1px solid rgba($color, 0.2);
+  }
+}
