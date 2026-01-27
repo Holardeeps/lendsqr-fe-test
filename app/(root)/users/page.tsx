@@ -1,120 +1,41 @@
-"use client";
+import UsersClient from "@/components/user-client/UsersClient";
+import {
+  cleanPhoneNumber,
+  formatDateString,
+  getLongestWord,
+  getRandomStatus,
+  truncateEmailLocalPart,
+} from "@/lib/utils";
 
-import { useState } from "react";
+const getUsers = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
+    cache: "no-store",
+  });
 
-import StatsCard from "@/components/stat-card/StatsCard";
-import styles from "./page.module.scss";
-import { tableHeader, userAnalytics, usersMock } from "@/constants";
-import { capitalizeWord, formatDateString } from "@/lib/utils";
-import Badge from "@/components/shared/badge/Badge";
-import DropDownFilter from "@/components/filter/DropDownFilter";
-import InfoBox from "@/components/shared/info-box/InfoBox";
+  if (!res.ok) throw new Error("Failed to fetch users");
 
-const page = () => {
-  const [filter, setFilter] = useState<string | null>(null);
-  const [info, setInfo] = useState<string | null>(null);
+  // console.log(res);
 
-  const dropForm = (column: string) => {
-    setFilter((prev) => (prev === column ? null : column));
-  };
-  const openInfo = (column: string) => {
-    setInfo((prev) => (prev === column ? null : column));
-  };
-
-  return (
-    <main className={styles.container}>
-      <h1 className={styles.header}>Users</h1>
-
-      {/* Stats Card Container */}
-      {/* TODO: add counting values up package */}
-      <section className={styles.statContainer}>
-        {/* mapping through stats card array */}
-        {userAnalytics.map((data, i) => (
-          // Stats card component to handle the user statistics data
-          <StatsCard key={i} data={data} />
-        ))}
-      </section>
-
-      {/* User List data section */}
-      <section className={styles.userTable}>
-        <table>
-          {/* Defining the sizes of each columns for the userlist table */}
-          <colgroup>
-            <col style={{ width: "15.13%" }} />
-            <col style={{ width: "13.82%" }} />
-            <col style={{ width: "19.17%" }} />
-            <col style={{ width: "16.17%" }} />
-            <col style={{ width: "20.08%" }} />
-            <col style={{ width: "13.04%" }} />
-            <col style={{ width: "2.61%" }} />
-          </colgroup>
-
-          {/* Header titles of the table */}
-          <thead>
-            <tr>
-              {/* Mapping through the header data for the table  */}
-              {tableHeader.map((header) => (
-                <th scope="col" aria-label={header} key={header}>
-                  <div className={styles.title}>
-                    <h2>{header}</h2>
-                    {/* controlling the content of the 7th column. (empty header != filter icon)...NB can also use the index of the last item in the array */}
-                    {header === "" ? (
-                      ""
-                    ) : (
-                      <img
-                        src="/icons/filter.png"
-                        alt="filter"
-                        onClick={(e) => {
-                          dropForm(header);
-                        }}
-                      />
-                    )}
-                  </div>
-                  {filter === header && (
-                    <div>
-                      <DropDownFilter />
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          {/* TODO: control error state for error and loading state for when data is being fetched */}
-          {/* The body of the user data to be displayed */}
-          <tbody>
-            {/* Geting the user's data list and displaying */}
-            {usersMock.map((user, i) => (
-              <tr key={i}>
-                <td>{capitalizeWord(user.organization)}</td>
-                <td>{capitalizeWord(user.userName)}</td>
-                <td>{user.email}</td>
-                <td>{user.phoneNumber}</td>
-                <td>{formatDateString(user.dateJoined)}</td>
-                <td>
-                  <Badge status={user.status} />
-                </td>
-                <td>
-                  <div className={styles.infoBox}>
-                    <img
-                      src="/icons/info-icon.png"
-                      alt="info"
-                      className=""
-                      // onClick={() => setInfo(prev => (prev === i ? null : i))}
-                      onClick={() => openInfo(user.email)}
-                    />
-                    {info === user.email && (
-                      <InfoBox userName={user.userName} />
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-    </main>
-  );
+  return res.json();
 };
 
-export default page;
+export default async function Page() {
+  const rawUsers: User[] = await getUsers();
+
+  // function transformUsers(raw: User[]) {
+  //   return raw.map((user) => ({
+  //     ...user, // keep ingall fields by default
+
+  //     // Apply your transformations:
+  //     status: getRandomStatus(), // randomize status
+  //     phone: cleanPhoneNumber(user.phone), // clean phone number
+  //     company: getLongestWord(user.company), // maybe take longest word of the name
+  //     email: truncateEmailLocalPart(user.email), // limit email local part to 8 chars
+  //     date_joined: formatDateString(user.date_joined), // format date nicely
+  //   }));
+  // // }
+
+  // const data = transformUsers(rawUsers);
+
+  return <UsersClient data={rawUsers} />;
+}

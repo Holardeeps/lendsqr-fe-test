@@ -1,0 +1,89 @@
+@use "@/styles/variables" as v;
+@use "@/styles/mixins" as m;
+
+.container {
+  width: 1040px;
+  font-family: var(--work-sans);
+  margin: 0 auto;
+  padding-top: 3.75rem;
+
+  .header {
+    font-weight: 500;
+    font-size: 24px;
+    color: v.$primary;
+    margin-bottom: 2.75rem;
+  }
+
+  .statContainer {
+    display: flex;
+    width: 100%;
+    gap: 1.625rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .userTable {
+    width: 100%;
+    height: 640px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
+    // overflow-x: auto;
+    padding: 1rem 1.8rem;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 2.19rem 0;
+
+      th,
+      td {
+        text-align: left;
+        padding: 0.75rem 0;
+      }
+      th {
+        vertical-align: bottom;
+        position: relative;
+
+        .title {
+          display: flex;
+          gap: 0.625rem;
+          color: v.$primary-1;
+
+          h2 {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 600;
+          }
+          img {
+            cursor: pointer;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+          height: 57px;
+        }
+        tr:last-child {
+          border-bottom: none;
+        }
+
+        td {
+          font-weight: 400;
+          font-size: 14px;
+          color: v.$primary-1;
+
+          .infoBox {
+            @include m.center;
+            position: relative;
+
+            img {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
