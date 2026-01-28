@@ -78,3 +78,22 @@ export const getRandomCompany = (): string => {
   const randomIndex = Math.floor(Math.random() * companies.length);
   return companies[randomIndex];
 };
+
+export function shorten(input: string): string {
+  return input.slice(0, 11);
+}
+
+export function getFullName(fullname: string): string {
+  const honor = ["mr", "mrs", "ms", "dr"];
+  const nameParts = fullname
+    .split(" ")
+    .map((part) => part.trim())
+    .filter((part) => {
+      const cleanPart = part.replace(/\.$/, "").toLowerCase();
+      return !honor.includes(cleanPart);
+    });
+  if (nameParts.length === 0) return "";
+  if (nameParts.length === 1) return nameParts[0];
+
+  return `${nameParts[0]} ${nameParts[nameParts.length - 1]}`;
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import StatsCard from "@/components/stat-card/StatsCard";
 import styles from "./UsersClient.module.scss";
-import { tableHeader, userAnalytics } from "@/constants";
+import { tableHeader } from "@/constants";
 import { capitalizeWord } from "@/lib/utils";
 import Badge from "@/components/shared/badge/Badge";
 import DropDownFilter from "@/components/filter/DropDownFilter";
@@ -50,6 +50,32 @@ const UsersClient = ({ data }: UserClientProps) => {
         user.date_joined.startsWith(filteredData.date))
     );
   });
+
+  const totalUsers = filteredUsers.length;
+  const activeUsers = filteredUsers.filter((u) => u.status === "active").length;
+  const other = filteredUsers.filter((u) => u.company === "lendsqr").length;
+  const irorunLendstarUsers = filteredUsers.filter(
+    (u) => u.company === "irorun" || u.company === "lendstar",
+  ).length;
+
+  const userAnalytics = [
+    { title: "users", icon: "/images/friends2-group.png", value: totalUsers },
+    {
+      title: "active users",
+      icon: "/images/b-users-group.png",
+      value: activeUsers,
+    },
+    {
+      title: "users with loans",
+      icon: "/images/ledger-group.png",
+      value: other,
+    },
+    {
+      title: "users with savings",
+      icon: "/images/stacked-coins-group.png",
+      value: irorunLendstarUsers,
+    },
+  ];
 
   const dropForm = (column: string) => {
     setFilter((prev) => (prev === column ? null : column));

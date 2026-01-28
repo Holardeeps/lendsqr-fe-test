@@ -13,8 +13,7 @@ interface userListData {
 interface userAnalyticsType {
   title: string;
   icon: string;
-  value: string;
-  bgColor?: string;
+  value: number;
 }
 
 interface User {

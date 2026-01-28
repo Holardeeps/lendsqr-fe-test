@@ -61,17 +61,17 @@ export const tableHeader: string[] = [
 ];
 
 export const userAnalytics: userAnalyticsType[] = [
-  { title: "users", icon: "/images/friends2-group.png", value: "2,453" },
-  { title: "active users", icon: "/images/b-users-group.png", value: "2,453" },
+  { title: "users", icon: "/images/friends2-group.png", value: 489383 },
+  { title: "active users", icon: "/images/b-users-group.png", value: 38929 },
   {
     title: "users with loans",
     icon: "/images/ledger-group.png",
-    value: "12,453",
+    value: 7227,
   },
   {
     title: "users with savings",
     icon: "/images/stacked-coins-group.png",
-    value: "102,453",
+    value: 38392,
   },
 ];
 

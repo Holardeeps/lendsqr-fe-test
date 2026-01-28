@@ -1,4 +1,4 @@
-import styles from "./page.module.scss";
+import UserDetails from "@/components/user-details/UserDetails";
 
 type userIdProps = {
   params: {
@@ -6,15 +6,11 @@ type userIdProps = {
   };
 };
 
+// Getting the userId from the params props from next { params: { id: string } }
 const page = async ({ params }: userIdProps) => {
   const { userId } = await params;
 
-  return (
-    <div>
-      <h2>xnknxl</h2>
-      {userId}
-    </div>
-  );
+  return <UserDetails id={userId} />;
 };
 
 export default page;

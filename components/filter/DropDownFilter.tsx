@@ -18,8 +18,6 @@ const DropDownFilter = ({ onClose }: InfoBoxProps) => {
 
   const [filterInput, setFilterInput] = useState(filteredValues);
 
-  const isFilterActive = Object.values(filteredValues).some(Boolean);
-
   const ORGANIZATIONS = Array.from(new Set(users.map((user) => user.company)));
   const STATUS_OPTIONS: statusType[] = [
     "active",
@@ -30,14 +28,15 @@ const DropDownFilter = ({ onClose }: InfoBoxProps) => {
 
   const handleApplyFilters = () => {
     setFilteredUsers(filterInput); // update store appliedFilter
-    applyFilters();
+    applyFilters(); // apply the filter inputs to the table
     onClose(); // close modal
   };
 
   const handleResetFilters = () => {
-    setFilterInput(DEFAULT_FILTERS);
-    resetFilters(); // reset table filter
-    // onClose()
+    setFilteredUsers(DEFAULT_FILTERS); // reset store filter
+    applyFilters(); // apply the empty filter to table
+    setFilterInput(DEFAULT_FILTERS); // reset modal inputs
+    onClose(); // close modal
   };
 
   const handleChange = (key: keyof typeof filterInput, value: string) => {
@@ -131,11 +130,7 @@ const DropDownFilter = ({ onClose }: InfoBoxProps) => {
       </label>
 
       <div className={styles.actions}>
-        <button
-          className={styles.reset}
-          onClick={handleResetFilters}
-          disabled={isFilterActive}
-        >
+        <button className={styles.reset} onClick={handleResetFilters}>
           Reset
         </button>
         <button className={styles.filter} onClick={handleApplyFilters}>
