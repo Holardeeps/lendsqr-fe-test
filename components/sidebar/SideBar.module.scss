@@ -5,7 +5,7 @@
   @include m.between;
   align-items: start;
   flex-direction: column;
-  width: 283px;
+  min-width: 283px;
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
@@ -14,7 +14,7 @@
   color: v.$primary;
 
   .divider {
-    // margin-left: 1.9rem;
+    width: 100%;
   }
 
   .logo {
@@ -27,6 +27,9 @@
     img {
       width: 16px;
       height: 16px;
+    }
+    h2 {
+      font-size: 16px;
     }
   }
 
@@ -116,5 +119,44 @@
     p {
       font-size: 12px;
     }
+  }
+
+  @media (max-width: 640px) {
+    width: 250px;
+  }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 3.8rem;
+    left: 0;
+    z-index: 50;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(-100%); // hidden by default
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 45;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    display: block;
   }
 }

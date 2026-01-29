@@ -115,83 +115,85 @@ const UsersClient = ({ data }: UserClientProps) => {
 
       {/* User List data section */}
       <section className={styles.userTable}>
-        <table>
-          {/* Defining the sizes of each columns for the userlist table */}
-          <colgroup>
-            <col style={{ width: "15.13%" }} />
-            <col style={{ width: "13.82%" }} />
-            <col style={{ width: "19.17%" }} />
-            <col style={{ width: "16.17%" }} />
-            <col style={{ width: "20.08%" }} />
-            <col style={{ width: "13.04%" }} />
-            <col style={{ width: "2.61%" }} />
-          </colgroup>
+        <div className={styles.inner}>
+          <table>
+            {/* Defining the sizes of each columns for the userlist table */}
+            <colgroup>
+              <col style={{ width: "15.13%" }} />
+              <col style={{ width: "13.82%" }} />
+              <col style={{ width: "19.17%" }} />
+              <col style={{ width: "16.17%" }} />
+              <col style={{ width: "20.08%" }} />
+              <col style={{ width: "13.04%" }} />
+              <col style={{ width: "2.61%" }} />
+            </colgroup>
 
-          {/* Header titles of the table */}
-          <thead>
-            <tr>
-              {/* Mapping through the header data for the table  */}
-              {tableHeader.map((header) => (
-                <th scope="col" aria-label={header} key={header}>
-                  <div className={styles.title}>
-                    <h2>{header}</h2>
-                    {/* controlling the content of the 7th column. (empty header != filter icon)...NB can also use the index of the last item in the array */}
-                    {header === "" ? (
-                      ""
-                    ) : (
-                      <img
-                        src="/icons/filter.png"
-                        alt="filter"
-                        onClick={(e) => {
-                          dropForm(header);
-                        }}
-                      />
-                    )}
-                  </div>
-                  {filter === header && (
-                    <div>
-                      <DropDownFilter onClose={() => setFilter(null)} />
+            {/* Header titles of the table */}
+            <thead>
+              <tr>
+                {/* Mapping through the header data for the table  */}
+                {tableHeader.map((header) => (
+                  <th scope="col" aria-label={header} key={header}>
+                    <div className={styles.title}>
+                      <h2>{header}</h2>
+                      {/* controlling the content of the 7th column. (empty header != filter icon)...NB can also use the index of the last item in the array */}
+                      {header === "" ? (
+                        ""
+                      ) : (
+                        <img
+                          src="/icons/filter.png"
+                          alt="filter"
+                          onClick={(e) => {
+                            dropForm(header);
+                          }}
+                        />
+                      )}
                     </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          {/* The body of the user data to be displayed */}
-          <tbody>
-            {/* Geting the user's data list and displaying */}
-            {paginatedUsers.map((user, i) => (
-              <tr key={i}>
-                <td>{capitalizeWord(user.company)}</td>
-                <td>{capitalizeWord(user.username)}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>{user.date_joined}</td>
-                <td>
-                  <Badge status={user.status} />
-                </td>
-                <td>
-                  <div className={styles.infoBox}>
-                    <img
-                      src="/icons/info-icon.png"
-                      alt="info"
-                      className=""
-                      // onClick={() => setInfo(prev => (prev === i ? null : i))}
-                      onClick={() => openInfo(user.lendsqr_id)}
-                    />
-                    {info === user.lendsqr_id && (
-                      <InfoBox
-                        id={user.lendsqr_id}
-                        onClose={() => setInfo(null)}
-                      />
+                    {filter === header && (
+                      <div>
+                        <DropDownFilter onClose={() => setFilter(null)} />
+                      </div>
                     )}
-                  </div>
-                </td>
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            {/* The body of the user data to be displayed */}
+            <tbody>
+              {/* Geting the user's data list and displaying */}
+              {paginatedUsers.map((user, i) => (
+                <tr key={i}>
+                  <td>{capitalizeWord(user.company)}</td>
+                  <td>{capitalizeWord(user.username)}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.date_joined}</td>
+                  <td>
+                    <Badge status={user.status} />
+                  </td>
+                  <td>
+                    <div className={styles.infoBox}>
+                      <img
+                        src="/icons/info-icon.png"
+                        alt="info"
+                        className=""
+                        // onClick={() => setInfo(prev => (prev === i ? null : i))}
+                        onClick={() => openInfo(user.lendsqr_id)}
+                      />
+                      {info === user.lendsqr_id && (
+                        <InfoBox
+                          id={user.lendsqr_id}
+                          onClose={() => setInfo(null)}
+                        />
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <div className={styles.paginationContainer}>

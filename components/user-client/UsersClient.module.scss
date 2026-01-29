@@ -2,7 +2,7 @@
 @use "@/styles/mixins" as m;
 
 .container {
-  width: 1040px;
+  max-width: 1040px;
   font-family: var(--work-sans);
   margin: 0 auto;
   padding-top: 3.75rem;
@@ -19,6 +19,19 @@
     width: 100%;
     gap: 1.625rem;
     margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    @media (max-width: 640px) {
+      display: none;
+    }
+    @media (min-width: 900px) {
+      // flex-wrap: nowrap;
+      gap: 0.4rem;
+    }
   }
 
   .userTable {
@@ -27,11 +40,19 @@
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
-    // overflow-x: auto;
-    padding: 1rem 1.8rem;
+
+    .inner {
+      padding: 1rem 1.8rem;
+    }
+
+    padding: 1rem 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1);
 
     table {
-      width: 100%;
+      width: max-content;
+      min-width: 100%;
       border-collapse: collapse;
       border-spacing: 2.19rem 0;
 
@@ -39,6 +60,7 @@
       td {
         text-align: left;
         padding: 0.75rem 0;
+        white-space: nowrap;
       }
       th {
         vertical-align: bottom;
@@ -84,6 +106,12 @@
           }
         }
       }
+    }
+    @media (min-width: 820px) and (max-width: 901px) {
+      width: 80%;
+    }
+    @media (max-width: 960px) {
+      max-width: 90%;
     }
   }
 
@@ -149,5 +177,20 @@
         opacity: 50%;
       }
     }
+  }
+
+  @media (max-width: 768px) {
+    overflow: hidden;
+    margin-left: 1.5rem;
+  }
+  @media (min-width: 766px) and (max-width: 900px) {
+    margin-left: 1rem;
+    // max-width: 1200px;
+  }
+  @media (max-width: 1034px) {
+    max-width: calc(100vh - 200px);
+  }
+  @media (max-width: 1120px) {
+    width: calc(100vh - 120px);
   }
 }

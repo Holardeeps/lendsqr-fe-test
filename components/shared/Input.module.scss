@@ -10,6 +10,10 @@
   opacity: 20;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    display: none;
+  }
+
   input {
     color: #545f7d;
     width: 100%;

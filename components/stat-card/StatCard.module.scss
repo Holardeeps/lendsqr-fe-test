@@ -40,4 +40,11 @@
     transform: scale(1.05);
     border-radius: 1.7rem;
   }
+  @media (max-width: 780px) {
+    width: 44%;
+  }
+
+  @media (min-width: 782px) and (max-width: 1180px) {
+    width: 44%;
+  }
 }

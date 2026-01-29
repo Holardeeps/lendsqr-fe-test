@@ -17,5 +17,8 @@
       flex-direction: column;
       align-items: start;
     }
+    @media (max-width: 980px) {
+      display: none;
+    }
   }
 }

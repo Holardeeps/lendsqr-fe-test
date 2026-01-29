@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import Input from "../shared/Input";
 import Link from "next/link";
+import { useUiStore } from "@/store/uiStore";
 
 const Navbar = () => {
+  const toggleSidebar = useUiStore((state) => state.toggleSideBar);
+  const isOpen = useUiStore((state) => state.isSideBarOpen);
+
   return (
     <header className={styles.header}>
       {/* Top navbar */}
@@ -38,6 +44,21 @@ const Navbar = () => {
             />
             <h2>Adedeji</h2>
             <img src="/icons/dropdown.png" alt="" className="" />
+            {isOpen ? (
+              <img
+                src="/icons/cancel.svg"
+                alt=""
+                className={styles.hamburger}
+                onClick={toggleSidebar}
+              />
+            ) : (
+              <img
+                src="/icons/nav.png"
+                alt=""
+                className={styles.hamburger}
+                onClick={toggleSidebar}
+              />
+            )}
           </div>
         </div>
       </nav>
