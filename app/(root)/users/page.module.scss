@@ -87,3 +87,51 @@
     }
   }
 }
+
+.error {
+  @include m.center;
+  gap: 1.2rem;
+
+  h2 {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: rgb(230, 53, 53);
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 0.88rem;
+    color: rgb(172, 50, 50);
+  }
+  .action {
+    @include m.between;
+    gap: 1.3rem;
+
+    button {
+      background-color: v.$secondary;
+      color: v.$primary;
+      padding: 1.2rem;
+    }
+    .link {
+      background-color: v.$primary;
+      color: v.$secondary;
+      padding: 1.2rem;
+    }
+  }
+}
+
+.loading {
+  @include m.center;
+  justify-items: center;
+
+  .loadingLogo {
+    @include m.animate-spin;
+    width: 2rem;
+    height: 2rem;
+  }
+  p {
+    color: v.$primary;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+}

@@ -3,7 +3,6 @@ import { create } from "zustand";
 import {
   getRandomStatus,
   cleanPhoneNumber,
-  getLongestWord,
   truncateEmailLocalPart,
   formatDateString,
   getRandomCompany,

@@ -18,3 +18,19 @@
   font-weight: 500;
   font-size: 12px;
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin animate-spin($duration: 1s, $timing: linear, $count: infinite) {
+  animation-name: spin;
+  animation-duration: $duration;
+  animation-timing-function: $timing;
+  animation-iteration-count: $count;
+}

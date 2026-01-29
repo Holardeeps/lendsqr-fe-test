@@ -14,7 +14,7 @@
   color: v.$primary;
 
   .divider {
-    margin-left: 1.9rem;
+    // margin-left: 1.9rem;
   }
 
   .logo {
@@ -22,6 +22,7 @@
     gap: 10px;
     margin-bottom: 2.5rem;
     cursor: pointer;
+    padding-left: 1.9rem;
 
     img {
       width: 16px;
@@ -36,6 +37,7 @@
     margin-bottom: 2rem;
     opacity: 60%;
     cursor: pointer;
+    padding-left: 1.9rem;
 
     img {
       width: 16px;
@@ -55,6 +57,7 @@
       @include m.sidebarTitle;
       text-transform: uppercase;
       margin-bottom: 10px;
+      padding-left: 1.9rem;
     }
 
     div {
@@ -68,6 +71,7 @@
       gap: 20px;
       opacity: 60%;
       margin-bottom: 5px;
+      padding-left: 1.9rem;
 
       .image {
         width: 16px;
@@ -79,6 +83,12 @@
         font-weight: 400;
         text-transform: capitalize;
       }
+    }
+
+    .active {
+      color: v.$primary;
+      background-color: rgba(57, 205, 204, 0.06);
+      border-left: 3px solid v.$secondary;
     }
   }
 

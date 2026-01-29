@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./SideBar.module.scss";
 import { sideBarContent } from "@/constants";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const SideBar = () => {
   const router = useRouter();
@@ -14,6 +14,8 @@ const SideBar = () => {
       router.push("/sign-in");
     }, 3000);
   };
+
+  const pathname = usePathname();
 
   return (
     <aside className={styles.sidebar}>
@@ -26,7 +28,9 @@ const SideBar = () => {
 
         <div className={styles.dashboard}>
           <img src="/icons/home.png" alt="home" />
-          <h2>Dashboard</h2>
+          <Link href={"/"}>
+            <h2>Dashboard</h2>
+          </Link>
         </div>
 
         <section className={styles.sideLinks}>
@@ -34,19 +38,28 @@ const SideBar = () => {
             <h2>Customers</h2>
 
             <ul>
-              {sideBarContent.customers.map((item) => (
-                <Link href={item.href} key={item.text} className={styles.link}>
-                  {/* <img src={item.icon} alt={item.text} /> */}
-                  <Image
-                    src={item.icon}
-                    width={12}
-                    height={12}
-                    alt={item.text}
-                    className={styles.image}
-                  />
-                  <p>{item.text}</p>
-                </Link>
-              ))}
+              {sideBarContent.customers.map((item) => {
+                const isActive =
+                  pathname === item.href || pathname.startsWith(item.href);
+
+                return (
+                  <Link
+                    href={item.href}
+                    key={item.text}
+                    className={`${styles.link} ${isActive ? styles.active : ""}`}
+                  >
+                    {/* <img src={item.icon} alt={item.text} /> */}
+                    <Image
+                      src={item.icon}
+                      width={12}
+                      height={12}
+                      alt={item.text}
+                      className={styles.image}
+                    />
+                    <p>{item.text}</p>
+                  </Link>
+                );
+              })}
             </ul>
           </div>
           <div>
