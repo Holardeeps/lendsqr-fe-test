@@ -97,3 +97,31 @@ export function getFullName(fullname: string): string {
 
   return `${nameParts[0]} ${nameParts[nameParts.length - 1]}`;
 }
+
+type PageItem = number | "...";
+
+export const getVisiblePages = (
+  currentPage: number,
+  totalPages: number,
+): PageItem[] => {
+  if (totalPages <= 6) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const pages: PageItem[] = [];
+
+  const start = Math.max(1, currentPage - 1);
+  const end = Math.min(totalPages - 2, currentPage + 1);
+
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  if (end < totalPages - 2) {
+    pages.push("...");
+  }
+
+  pages.push(totalPages - 1, totalPages);
+
+  return pages;
+};

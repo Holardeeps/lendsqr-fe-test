@@ -21,8 +21,8 @@
 
     .logo {
       @include m.center;
-      width: 144.8px;
-      height: 30px;
+      width: 9.05rem;
+      height: 1.88rem;
     }
 
     .rightBox {
@@ -36,7 +36,7 @@
 
       .link {
         text-decoration: underline;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 400;
       }
 
@@ -46,7 +46,8 @@
       }
 
       .icon {
-        height: 29px;
+        height: 1.44rem;
+        width: 1.23rem;
       }
 
       .userBox {
@@ -62,7 +63,7 @@
         }
 
         h2 {
-          font-size: 1.3rem;
+          font-size: 1rem;
           font-weight: 600;
           font-family: var(--work-sans);
         }

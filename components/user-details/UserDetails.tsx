@@ -5,6 +5,7 @@ import styles from "./UserDetails.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { getFullName, shorten } from "@/lib/utils";
+import { useState } from "react";
 
 type UserDetailsProps = {
   id: string;
@@ -12,9 +13,30 @@ type UserDetailsProps = {
 
 const UserDetails = ({ id }: UserDetailsProps) => {
   const getUser = useUserStore((state) => state.getUserById);
+  const updateUser = useUserStore((state) => state.updateUser);
   const user = getUser(id);
 
   if (!user) return null;
+
+  const handleBlacklist = () => {
+    updateUser(user, { status: "blacklisted" });
+  };
+  const handleActivate = () => {
+    updateUser(user, { status: "active" });
+  };
+
+  const tabs = [
+    "General Details",
+    "Documents",
+    "Bank Details",
+    "Loans",
+    "Savings",
+    "App and System",
+  ] as const;
+
+  type Tab = (typeof tabs)[number];
+
+  const [activeTab, setActiveTab] = useState<Tab>("General Details");
 
   return (
     <main className={styles.container}>
@@ -25,8 +47,12 @@ const UserDetails = ({ id }: UserDetailsProps) => {
       <div className={styles.heading}>
         <h2>User Details</h2>
         <div className={styles.actions}>
-          <button className={styles.danger}>blacklist user</button>
-          <button className={styles.active}>activate user</button>
+          <button className={styles.danger} onClick={handleBlacklist}>
+            blacklist user
+          </button>
+          <button className={styles.active} onClick={handleActivate}>
+            activate user
+          </button>
         </div>
       </div>
 
@@ -70,146 +96,160 @@ const UserDetails = ({ id }: UserDetailsProps) => {
           </div>
         </div>
         <div className={styles.nav}>
-          <h2>General Details</h2>
-          <h2>Documents</h2>
-          <h2>Bank Details</h2>
-          <h2>Loans</h2>
-          <h2>Savings</h2>
-          <h2>App and System</h2>
+          {tabs.map((tab) => (
+            <div
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={activeTab === tab ? styles.active : styles.norm}
+            >
+              <h2>{tab}</h2>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className={styles.general}>
-        <div className={styles.details}>
-          <h2>Personal Information</h2>
-          <div className={styles.data}>
-            <div className="">
-              <p>full name</p>
-              <h2>{user.name}</h2>
+      <div className={""}>
+        {activeTab === "General Details" && (
+          <section className={styles.general}>
+            <div className={styles.details}>
+              <h2>Personal Information</h2>
+              <div className={styles.data}>
+                <div className="">
+                  <p>full name</p>
+                  <h2>{user.name}</h2>
+                </div>
+                <div className="">
+                  <p>phone number</p>
+                  <h2>{user.phone}</h2>
+                </div>
+                <div className="">
+                  <p>email address</p>
+                  <h2>{user.email}</h2>
+                </div>
+                <div className="">
+                  <p>bvn</p>
+                  <h2>{user.bvn}</h2>
+                </div>
+                <div className="">
+                  <p>gender</p>
+                  <h2>{user.gender}</h2>
+                </div>
+                <div className="">
+                  <p>marital status</p>
+                  <h2>{user.marital_status}</h2>
+                </div>
+                <div className="">
+                  <p>children</p>
+                  <h2>{user.children}</h2>
+                </div>
+                <div className="">
+                  <p>type of residence</p>
+                  <h2>{user.residence}</h2>
+                </div>
+              </div>
             </div>
-            <div className="">
-              <p>phone number</p>
-              <h2>{user.phone}</h2>
+            <div className={styles.details}>
+              <h2>Education and Employment</h2>
+              <div className={styles.data}>
+                <div className="">
+                  <p>level of education</p>
+                  <h2>{user.education}</h2>
+                </div>
+                <div className="">
+                  <p>employment status</p>
+                  <h2>{user.employment ? "Employed" : "Self-Employed"}</h2>
+                </div>
+                <div className="">
+                  <p>sector of employment</p>
+                  <h2>{user.work_sector}</h2>
+                </div>
+                <div className="">
+                  <p>duration of employment</p>
+                  <h2>{user.work_duration}</h2>
+                </div>
+                <div className="">
+                  <p>office email</p>
+                  <h2>{user.email}</h2>
+                </div>
+                <div className="">
+                  <p>monthly income</p>
+                  <h2>{user.income}</h2>
+                </div>
+                <div className="">
+                  <p>loan repayment</p>
+                  <h2>{user.loan_repayment}</h2>
+                </div>
+              </div>
             </div>
-            <div className="">
-              <p>email address</p>
-              <h2>{user.email}</h2>
+            <div className={styles.details}>
+              <h2>Socials</h2>
+              <div className={styles.data}>
+                <div className="">
+                  <p>twitter</p>
+                  <h2>{user.twitter}</h2>
+                </div>
+                <div className="">
+                  <p>facebook</p>
+                  <h2>{user.facebook}</h2>
+                </div>
+                <div className="">
+                  <p>instagram</p>
+                  <h2>{user.instagram}</h2>
+                </div>
+              </div>
             </div>
-            <div className="">
-              <p>bvn</p>
-              <h2>{user.bvn}</h2>
+            <div className={styles.details}>
+              <h2>Guarantor</h2>
+              <div className={styles.data}>
+                <div className="">
+                  <p>full name</p>
+                  <h2>{user.guarantor}</h2>
+                </div>
+                <div className="">
+                  <p>phone number</p>
+                  <h2>{user.guarantor_phone}</h2>
+                </div>
+                <div className="">
+                  <p>email address</p>
+                  <h2>{user.guarantor_email}</h2>
+                </div>
+                <div className="">
+                  <p>relationship</p>
+                  <h2>{user.guarantor_relationship}</h2>
+                </div>
+              </div>
             </div>
-            <div className="">
-              <p>gender</p>
-              <h2>{user.gender}</h2>
+            <div className={styles.details}>
+              <h2></h2>
+              <div className={styles.data}>
+                <div className="">
+                  <p>full name</p>
+                  <h2>{user.guarantor2}</h2>
+                </div>
+                <div className="">
+                  <p>phone number</p>
+                  <h2>{user.guarantor2_phone}</h2>
+                </div>
+                <div className="">
+                  <p>email address</p>
+                  <h2>{user.guarantor2_email}</h2>
+                </div>
+                <div className="">
+                  <p>relationship</p>
+                  <h2>{user.guarantor2_relationship}</h2>
+                </div>
+              </div>
             </div>
-            <div className="">
-              <p>marital status</p>
-              <h2>{user.marital_status}</h2>
-            </div>
-            <div className="">
-              <p>children</p>
-              <h2>{user.children}</h2>
-            </div>
-            <div className="">
-              <p>type of residence</p>
-              <h2>{user.residence}</h2>
-            </div>
-          </div>
-        </div>
-        <div className={styles.details}>
-          <h2>Education and Employment</h2>
-          <div className={styles.data}>
-            <div className="">
-              <p>level of education</p>
-              <h2>{user.education}</h2>
-            </div>
-            <div className="">
-              <p>employment status</p>
-              <h2>{user.employment ? "Employed" : "Self-Employed"}</h2>
-            </div>
-            <div className="">
-              <p>sector of employment</p>
-              <h2>{user.work_sector}</h2>
-            </div>
-            <div className="">
-              <p>duration of employment</p>
-              <h2>{user.work_duration}</h2>
-            </div>
-            <div className="">
-              <p>office email</p>
-              <h2>{user.email}</h2>
-            </div>
-            <div className="">
-              <p>monthly income</p>
-              <h2>{user.income}</h2>
-            </div>
-            <div className="">
-              <p>loan repayment</p>
-              <h2>{user.loan_repayment}</h2>
-            </div>
-          </div>
-        </div>
-        <div className={styles.details}>
-          <h2>Socials</h2>
-          <div className={styles.data}>
-            <div className="">
-              <p>twitter</p>
-              <h2>{user.twitter}</h2>
-            </div>
-            <div className="">
-              <p>facebook</p>
-              <h2>{user.facebook}</h2>
-            </div>
-            <div className="">
-              <p>instagram</p>
-              <h2>{user.instagram}</h2>
-            </div>
-          </div>
-        </div>
-        <div className={styles.details}>
-          <h2>Guarantor</h2>
-          <div className={styles.data}>
-            <div className="">
-              <p>full name</p>
-              <h2>{user.guarantor}</h2>
-            </div>
-            <div className="">
-              <p>phone number</p>
-              <h2>{user.guarantor_phone}</h2>
-            </div>
-            <div className="">
-              <p>email address</p>
-              <h2>{user.guarantor_email}</h2>
-            </div>
-            <div className="">
-              <p>relationship</p>
-              <h2>{user.guarantor_relationship}</h2>
-            </div>
-          </div>
-        </div>
-        <div className={styles.details}>
-          <h2></h2>
-          <div className={styles.data}>
-            <div className="">
-              <p>full name</p>
-              <h2>{user.guarantor2}</h2>
-            </div>
-            <div className="">
-              <p>phone number</p>
-              <h2>{user.guarantor2_phone}</h2>
-            </div>
-            <div className="">
-              <p>email address</p>
-              <h2>{user.guarantor2_email}</h2>
-            </div>
-            <div className="">
-              <p>relationship</p>
-              <h2>{user.guarantor2_relationship}</h2>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        )}
+        {activeTab === "Documents" && <div className="">Documents</div>}
+        {activeTab === "Bank Details" && <div className="">Bank Details</div>}
+        {activeTab === "Loans" && <div className="">Loans</div>}
+        {activeTab === "Savings" && <div className="">Savings</div>}
+        {activeTab === "App and System" && (
+          <div className="">App and System</div>
+        )}
+      </div>
     </main>
   );
 };

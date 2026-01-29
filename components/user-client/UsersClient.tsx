@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import StatsCard from "@/components/stat-card/StatsCard";
 import styles from "./UsersClient.module.scss";
 import { tableHeader } from "@/constants";
-import { capitalizeWord } from "@/lib/utils";
+import { capitalizeWord, getVisiblePages } from "@/lib/utils";
 import Badge from "@/components/shared/badge/Badge";
 import DropDownFilter from "@/components/filter/DropDownFilter";
 import InfoBox from "@/components/shared/info-box/InfoBox";
@@ -20,6 +20,10 @@ const UsersClient = ({ data }: UserClientProps) => {
   const [filter, setFilter] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
 
+  // Pagination
+  const [rowsPerPage, setRowsPerPage] = useState(10); // default 10
+  const [currentPage, setCurrentPage] = useState(1);
+
   //   States controling the users list storing, filtering
 
   const users = useUserStore((state) => state.users); // users from the zustand store
@@ -33,6 +37,11 @@ const UsersClient = ({ data }: UserClientProps) => {
       setUsers(data);
     }
   }, [data, users.length, setUsers]); //Gets users data from backend on mount
+
+  // Resetting page on filtering data
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredData]);
 
   // console.log(users);
 
@@ -50,6 +59,12 @@ const UsersClient = ({ data }: UserClientProps) => {
         user.date_joined.startsWith(filteredData.date))
     );
   });
+
+  // pagination control
+  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
 
   const totalUsers = filteredUsers.length;
   const activeUsers = filteredUsers.filter((u) => u.status === "active").length;
@@ -143,11 +158,10 @@ const UsersClient = ({ data }: UserClientProps) => {
             </tr>
           </thead>
 
-          {/* TODO: control error state for error and loading state for when data is being fetched */}
           {/* The body of the user data to be displayed */}
           <tbody>
             {/* Geting the user's data list and displaying */}
-            {filteredUsers.map((user, i) => (
+            {paginatedUsers.map((user, i) => (
               <tr key={i}>
                 <td>{capitalizeWord(user.company)}</td>
                 <td>{capitalizeWord(user.username)}</td>
@@ -179,6 +193,80 @@ const UsersClient = ({ data }: UserClientProps) => {
           </tbody>
         </table>
       </section>
+
+      <div className={styles.paginationContainer}>
+        <span>
+          Showing{" "}
+          <div className="">
+            <select
+              value={rowsPerPage}
+              onChange={(e) => {
+                setRowsPerPage(Number(e.target.value));
+                setCurrentPage(1); // reset to first page when rows per page changes
+              }}
+            >
+              {[10, 15, 20, 25, 50].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </div>
+          out of {filteredUsers.length} users
+        </span>
+
+        <div className={styles.paginationButtons}>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={styles.direction}
+          >
+            <img src="/icons/prev.png" alt="prev" />
+          </button>
+
+          {/* Numbered page buttons */}
+          <div className="">
+            {/* {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={
+                  currentPage === i + 1 ? styles.activePage : styles.norm
+                }
+              >
+                {i + 1}
+              </button>
+            ))} */}
+            {getVisiblePages(currentPage, totalPages).map((page, index) =>
+              page === "..." ? (
+                <span key={`ellipsis-${index}`} className={styles.norm}>
+                  …
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={
+                    currentPage === page ? styles.activePage : styles.norm
+                  }
+                >
+                  {page}
+                </button>
+              ),
+            )}
+          </div>
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className={styles.direction}
+          >
+            <img src="/icons/next.png" alt="" />
+          </button>
+        </div>
+      </div>
     </main>
   );
 };

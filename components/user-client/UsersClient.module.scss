@@ -23,7 +23,7 @@
 
   .userTable {
     width: 100%;
-    height: 640px;
+    margin-bottom: 1.4rem;
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
@@ -83,6 +83,70 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .paginationContainer {
+    @include m.between;
+    width: 100%;
+    margin-bottom: 3rem;
+
+    span {
+      @include m.center;
+      gap: 0.6rem;
+      color: v.$primary-1;
+      font-weight: 400;
+      font-size: 14px;
+
+      div {
+        @include m.center;
+        width: 5rem;
+        border-radius: 4px;
+
+        select {
+          height: 1.9rem;
+          background-color: #f0f0f0;
+          padding: 0 0.5rem;
+          background-color: none;
+          border: none;
+          font-weight: 500;
+          color: v.$primary;
+
+          &:focus {
+            outline: none;
+          }
+
+          option {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .paginationButtons {
+      @include m.center;
+      gap: 1.3rem;
+      font-weight: 400;
+      font-size: 16px;
+      color: v.$primary-1;
+
+      .direction {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #f0f0f0;
+        opacity: 60%;
+      }
+
+      div {
+        @include m.center;
+        gap: 1.3rem;
+      }
+      .activePage {
+        color: v.$primary;
+      }
+      .norm {
+        opacity: 50%;
       }
     }
   }

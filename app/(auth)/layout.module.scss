@@ -1,0 +1,21 @@
+@use "@/styles/mixins" as m;
+
+.layout {
+  @include m.between;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+
+  .leftSide {
+    @include m.center;
+    flex: 1 1 0;
+
+    div {
+      @include m.center;
+      gap: 8.7rem;
+
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+}

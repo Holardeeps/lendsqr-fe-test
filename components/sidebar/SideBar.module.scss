@@ -2,15 +2,20 @@
 @use "@/styles/mixins" as m;
 
 .sidebar {
+  @include m.between;
+  align-items: start;
+  flex-direction: column;
   width: 283px;
   min-height: 100vh;
-  //   height: auto;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  padding-left: 30px;
   padding-top: 30px;
   font-family: var(--work-sans);
   color: v.$primary;
+
+  .divider {
+    margin-left: 1.9rem;
+  }
 
   .logo {
     display: flex;
@@ -44,6 +49,8 @@
   }
 
   .sideLinks {
+    padding-bottom: 14px;
+
     h2 {
       @include m.sidebarTitle;
       text-transform: uppercase;
@@ -72,6 +79,32 @@
         font-weight: 400;
         text-transform: capitalize;
       }
+    }
+  }
+
+  .logout {
+    padding: 2rem 0;
+    padding-left: 1.9rem;
+    border-top: 1px solid rgba(33, 63, 125, 0.1);
+    width: 100%;
+
+    div {
+      @include m.center;
+      gap: 20px;
+      justify-content: start;
+      font-size: 1rem;
+      font-weight: 400;
+      color: v.$primary;
+      margin-bottom: 2rem;
+      cursor: pointer;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+    p {
+      font-size: 12px;
     }
   }
 }

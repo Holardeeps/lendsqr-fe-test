@@ -69,8 +69,9 @@
     height: 13.2rem;
     background-color: #ffffff;
     border-radius: 4px;
-    border: 1px solid #213f7d0f;
+    border: 2px solid #213f7d0f;
     box-shadow: 3px 5px 20px 0 #0000000a;
+    margin-bottom: 1.9rem;
 
     .user {
       @include m.center;
@@ -141,15 +142,25 @@
 
     .nav {
       @include m.between;
-      //   gap: 2.4rem;
       padding: 0 3.8rem;
       color: #000000cc;
 
-      h2 {
-        font-weight: 400;
-        font-size: 16px;
-        opacity: 0.9;
-        cursor: pointer;
+      div {
+        @include m.center;
+
+        h2 {
+          font-weight: 400;
+          font-size: 16px;
+          opacity: 0.9;
+          padding-bottom: 4px;
+          cursor: pointer;
+        }
+      }
+      .active {
+        color: v.$secondary;
+        border-bottom: 2px solid v.$secondary;
+      }
+      .norm {
       }
     }
   }
@@ -158,15 +169,27 @@
     background-color: #ffffff;
     color: v.$primary-1;
     padding: 1.9rem 1.9rem;
+    border: 1px solid #213f7d0f;
+    box-shadow: 3px 5px 20px 0 #0000000a;
+    border-radius: 4px;
+    margin-bottom: 1.8rem;
+
+    & > .details:last-child {
+      border-bottom: none;
+
+      h2 {
+        height: 1rem;
+      }
+    }
 
     .details {
-      padding-bottom: 1.9rem;
-      margin: 2rem 0;
+      margin-bottom: 1.8rem;
       border-bottom: 1px solid rgba(33, 63, 125, 0.1);
 
       h2 {
         font-weight: 500;
         font-size: 14px;
+
         color: v.$primary;
         margin-bottom: 1.9rem;
       }
