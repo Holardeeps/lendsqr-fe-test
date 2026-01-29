@@ -62,7 +62,6 @@ const UserDetails = ({ id }: UserDetailsProps) => {
           <div className={styles.left}>
             <div className="">
               <div className={styles.image}>
-                {/* Cant use populated images because mockapi.io returns different avatars from different urls. Cant control the source  */}
                 {user.avatar ? (
                   <Image
                     src={user.avatar}
@@ -80,19 +79,21 @@ const UserDetails = ({ id }: UserDetailsProps) => {
               <p>{shorten(user.lendsqr_id)}</p>
             </div>
           </div>
-          <div className={styles.center}>
-            <p>User's Tier</p>
-            <span>
-              <img src="/icons/star-fill.png" alt="star alt" />
-              <img src="/icons/star-fill.png" alt="star alt" />
-              <img src="/icons/star.png" alt="star" />
-            </span>
-          </div>
-          <div className={styles.right}>
-            <h2>₦{user.lendsqr_balance}</h2>
-            <span>
-              {user.bank_number}/{user.bank}
-            </span>
+          <div className={styles.middle}>
+            <div className={styles.center}>
+              <p>User's Tier</p>
+              <span>
+                <img src="/icons/star-fill.png" alt="star alt" />
+                <img src="/icons/star-fill.png" alt="star alt" />
+                <img src="/icons/star.png" alt="star" />
+              </span>
+            </div>
+            <div className={styles.right}>
+              <h2>₦{user.lendsqr_balance}</h2>
+              <span>
+                {user.bank_number}/{user.bank}
+              </span>
+            </div>
           </div>
         </div>
         <div className={styles.nav}>
