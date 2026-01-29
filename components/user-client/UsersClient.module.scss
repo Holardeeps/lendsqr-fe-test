@@ -79,6 +79,16 @@
           img {
             cursor: pointer;
           }
+
+          .filterDrop {
+            @media (max-width: 768px) {
+              display: none;
+            }
+          }
+
+          @media (max-width: 768px) {
+            padding-right: 0.5rem;
+          }
         }
       }
 
@@ -108,10 +118,13 @@
       }
     }
     @media (min-width: 820px) and (max-width: 901px) {
-      width: 80%;
+      // width: 80%;
     }
     @media (max-width: 960px) {
-      max-width: 90%;
+      max-width: 95%;
+    }
+    @media (max-width: 754px) {
+      width: calc(100vh - 240px);
     }
   }
 

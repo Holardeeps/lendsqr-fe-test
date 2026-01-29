@@ -143,6 +143,7 @@ const UsersClient = ({ data }: UserClientProps) => {
                         <img
                           src="/icons/filter.png"
                           alt="filter"
+                          className={styles.filterDrop}
                           onClick={(e) => {
                             dropForm(header);
                           }}
