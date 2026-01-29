@@ -16,7 +16,8 @@
     width: 98%;
     height: 100%;
     padding: 5px;
-    margin: auto;
+    // margin: auto;
+    margin-left: 0.6rem;
     @include m.between;
 
     .logo {
@@ -25,9 +26,9 @@
       height: 1.88rem;
       padding-right: 1rem;
 
-      @media (max-width: 640px) {
-        width: 6rem;
-        height: 1.5rem;
+      @media (max-width: 440px) {
+        width: 5rem;
+        height: 1.2rem;
         margin-left: 1rem;
       }
       @media (max-width: 768px) {
@@ -38,13 +39,13 @@
     }
 
     .rightBox {
-      @include m.between;
-      width: 340px;
-      max-width: 380px;
+      @include m.center;
       color: v.$primary;
-      margin-left: 8rem;
+      margin-left: 2rem;
       margin-right: 2.2rem;
       cursor: pointer;
+      justify-content: space-around;
+      gap: 2rem;
 
       .link {
         text-decoration: underline;
@@ -79,11 +80,13 @@
           margin-right: 7px;
           width: 48px;
           height: 48px;
-          object-fit: cover;
+          // object-fit: cover;
 
           @media (max-width: 768px) {
             margin-left: auto;
             margin-right: 0;
+            width: 35px;
+            height: 35px;
           }
         }
 
@@ -110,20 +113,31 @@
 
           @media (max-width: 768px) {
             display: block;
-            margin-left: 2rem;
+            margin-left: 0.6rem;
           }
         }
 
         @media (max-width: 768px) {
           padding-left: 3rem;
-          width: 94%;
+        }
+        @media (max-width: 440px) {
+          padding-left: 0;
+        }
+        @media (min-width: 769px) {
+          justify-content: space-around;
+          gap: 2rem;
         }
       }
     }
   }
 
   @media (max-width: 768px) {
-    padding-right: 0;
     height: 80px;
   }
+  @media (max-width: 420px) {
+    @include m.center;
+  }
 }
+
+// Correct sidebar bottom
+// Correct pagination

@@ -150,6 +150,10 @@
           }
         }
       }
+
+      @media (max-width: 780px) {
+        display: none;
+      }
     }
 
     .paginationButtons {
@@ -176,6 +180,14 @@
       .norm {
         opacity: 50%;
       }
+
+      @media (max-width: 780px) {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 1054px) {
+      justify-content: center;
     }
   }
 
