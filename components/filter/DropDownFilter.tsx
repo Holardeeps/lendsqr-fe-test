@@ -45,89 +45,91 @@ const DropDownFilter = ({ onClose }: InfoBoxProps) => {
 
   return (
     <div className={styles.filterForm}>
-      <label>
-        Organization
-        <select
-          value={filterInput.company}
-          onChange={(e) => handleChange("company", e.target.value)}
-        >
-          <option value="" disabled hidden>
-            Select
-          </option>
-          {ORGANIZATIONS.map((org) => (
-            <option key={org} value={org}>
-              {org}
+      <div className={styles.formBox}>
+        <label>
+          Organization
+          <select
+            value={filterInput.company}
+            onChange={(e) => handleChange("company", e.target.value)}
+          >
+            <option value="" disabled hidden>
+              Select
             </option>
-          ))}
-          {/* <option value="">lendsqr</option>
+            {ORGANIZATIONS.map((org) => (
+              <option key={org} value={org}>
+                {org}
+              </option>
+            ))}
+            {/* <option value="">lendsqr</option>
           <option value="">lendstar</option>
           <option value="">irorun</option> */}
-        </select>
-      </label>
+          </select>
+        </label>
 
-      <label>
-        Username
-        <input
-          type="text"
-          placeholder="User"
-          value={filterInput.username}
-          onChange={(e) => handleChange("username", e.target.value)}
-        />
-      </label>
-
-      <label>
-        Email
-        <input
-          type="text"
-          placeholder="Email"
-          value={filterInput.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-        />
-      </label>
-
-      <label>
-        Date
-        <div className={styles.date}>
+        <label>
+          Username
           <input
-            placeholder="Date"
-            value={filterInput.date}
-            onChange={(e) => handleChange("date", e.target.value)}
+            type="text"
+            placeholder="User"
+            value={filterInput.username}
+            onChange={(e) => handleChange("username", e.target.value)}
           />
-          <img src="/icons/calendar.png" alt="calendar" />
-        </div>
-      </label>
+        </label>
 
-      <label>
-        Phone Number
-        <input
-          type="text"
-          placeholder="Phone Number"
-          value={filterInput.phone}
-          onChange={(e) => handleChange("phone", e.target.value)}
-        />
-      </label>
+        <label>
+          Email
+          <input
+            type="text"
+            placeholder="Email"
+            value={filterInput.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+          />
+        </label>
 
-      <label>
-        Status
-        <select
-          value={filterInput.status}
-          onChange={(e) => handleChange("status", e.target.value)}
-        >
-          <option value="" disabled hidden>
-            Select
-          </option>
-          {/* Controlling the user status selection */}
-          {STATUS_OPTIONS.map((status) => (
-            <option key={status} value={status}>
-              {status}
+        <label>
+          Date
+          <div className={styles.date}>
+            <input
+              placeholder="Date"
+              value={filterInput.date}
+              onChange={(e) => handleChange("date", e.target.value)}
+            />
+            <img src="/icons/calendar.png" alt="calendar" />
+          </div>
+        </label>
+
+        <label>
+          Phone Number
+          <input
+            type="text"
+            placeholder="Phone Number"
+            value={filterInput.phone}
+            onChange={(e) => handleChange("phone", e.target.value)}
+          />
+        </label>
+
+        <label>
+          Status
+          <select
+            value={filterInput.status}
+            onChange={(e) => handleChange("status", e.target.value)}
+          >
+            <option value="" disabled hidden>
+              Select
             </option>
-          ))}
-          {/* <option value="">active</option>
+            {/* Controlling the user status selection */}
+            {STATUS_OPTIONS.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+            {/* <option value="">active</option>
           <option value="">inactive</option>
           <option value="">pending</option>
           <option value="">blacklisted</option> */}
-        </select>
-      </label>
+          </select>
+        </label>
+      </div>
 
       <div className={styles.actions}>
         <button className={styles.reset} onClick={handleResetFilters}>

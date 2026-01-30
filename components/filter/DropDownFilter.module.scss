@@ -2,6 +2,8 @@
 @use "@/styles/mixins" as m;
 
 .filterForm {
+  // display: flex;
+  // flex-direction: column;
   position: absolute;
   top: 40;
   left: 0;
@@ -15,9 +17,16 @@
   border-radius: 4px;
   box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
 
+  .formBox {
+    display: flex;
+    flex-direction: column;
+  }
+
   label {
     font-weight: 500;
     font-size: 14;
+    display: flex;
+    flex-direction: column;
 
     input {
       padding: 20px;
@@ -86,12 +95,16 @@
       font-size: 14px;
     }
 
-    .reset {
-    }
+    // .reset {
+    // }
     .filter {
       background-color: #39cdcc;
       color: #ffffff;
       border: 1px solid #39cdcc;
     }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }
